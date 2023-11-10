@@ -5,10 +5,13 @@ import christmas.enum.Main
 class Benefits(val date: Date, val order: Order) {
 
     val discounts = mutableListOf<Discount>()
+
     init {
         DDayDiscountPrice()
         weekdayDiscount()
+        weekendDiscount()
     }
+
     fun DDayDiscountPrice() {
         if (date.day > 25) return
         discounts.add(Discount("크리스마스 디 데이 할인", 1000 + (date.day - 1) * 100))
@@ -16,8 +19,14 @@ class Benefits(val date: Date, val order: Order) {
 
     fun weekdayDiscount() {
         if (date.isWeekend) return
-        val mainMenuCount = order.getMenus().count { menu -> menu.type == "디저트" }
-        discounts.add(Discount("평일 할인", mainMenuCount * 2023))
+        val dessertMenus = order.getMenus().filter { menu -> menu.type == "디저트" }
+        discounts.add(Discount("평일 할인", dessertMenus.sumOf { dessert -> dessert.count * 2023 }))
+    }
+
+    fun weekendDiscount() {
+        if (!date.isWeekend) return
+        val mainMenus = order.getMenus().filter { menu -> menu.type == "메인" }
+        discounts.add(Discount("주말 할인", mainMenus.sumOf { main -> main.count * 2023 }))
     }
 
 }
