@@ -10,6 +10,7 @@ class Benefits(val date: Date, val order: Order) {
         DDayDiscountPrice()
         weekdayDiscount()
         weekendDiscount()
+        specialDiscount()
     }
 
     fun DDayDiscountPrice() {
@@ -24,9 +25,14 @@ class Benefits(val date: Date, val order: Order) {
     }
 
     fun weekendDiscount() {
-        if (!date.isWeekend) return
+        if (date.isWeekend.not()) return
         val mainMenus = order.getMenus().filter { menu -> menu.type == "메인" }
         discounts.add(Discount("주말 할인", mainMenus.sumOf { main -> main.count * 2023 }))
+    }
+
+    fun specialDiscount(){
+        if (date.hasStar.not()) return
+        discounts.add(Discount("특별 할인", 1000))
     }
 
 }

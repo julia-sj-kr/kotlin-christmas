@@ -44,4 +44,11 @@ class BenefitsTest {
         assertEquals(expected, weekendDiscount)
     }
 
+    @Test
+    fun `특별 할인 가격이 1000원이 아닐 경우에 에러가 발생 한다`() {
+        val expected = 1000
+        val weekendDiscount = benefits.discounts.find { discount -> discount.name == "특별 할인" }?.price ?: 0
+        assertEquals(expected, weekendDiscount)
+    }
+
 }
