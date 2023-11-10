@@ -17,8 +17,8 @@ class BenefitsTest {
         val date = Date(3, isWeekend = false, hasStar = true)
         val order = Order(
             listOf(
-                Menu(name = tBoneStake.name, tBoneStake.type, tBoneStake.price, 1),
-                Menu(name = iceCream.name, iceCream.type, iceCream.price, 2)
+                Menu(name = tBoneStake.menu, tBoneStake.type, tBoneStake.price, 1),
+                Menu(name = iceCream.menu, iceCream.type, iceCream.price, 2)
             )
         )
         benefits = Benefits(date, order)

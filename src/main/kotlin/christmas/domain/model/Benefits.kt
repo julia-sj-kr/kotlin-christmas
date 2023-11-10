@@ -39,7 +39,7 @@ class Benefits(val date: Date, val order: Order) {
     private fun addChampagneFree() {
         if (order.getTotalPrice() < 120_000) return
         val champagne = Beverage.Champagne
-        freeMenus.add(Menu(champagne.name, champagne.type, champagne.price, 1))
+        freeMenus.add(Menu(champagne.menu, champagne.type, champagne.price, 1))
     }
 
 

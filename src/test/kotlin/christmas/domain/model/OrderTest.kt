@@ -15,8 +15,8 @@ class OrderTest {
         val barbecueRibs = Main.BarbecueRibs
         order = Order(
             listOf(
-                Menu(name = tBoneStake.name, tBoneStake.type, tBoneStake.price, 2),
-                Menu(name = barbecueRibs.name, barbecueRibs.type, barbecueRibs.price, 1)
+                Menu(name = tBoneStake.menu, tBoneStake.type, tBoneStake.price, 2),
+                Menu(name = barbecueRibs.menu, barbecueRibs.type, barbecueRibs.price, 1)
             )
         )
     }
