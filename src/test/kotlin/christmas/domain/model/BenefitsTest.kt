@@ -3,6 +3,7 @@ package christmas.domain.model
 import christmas.enum.Dessert
 import christmas.enum.Main
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
@@ -49,6 +50,11 @@ class BenefitsTest {
         val expected = 1000
         val weekendDiscount = benefits.discounts.find { discount -> discount.name == "특별 할인" }?.price ?: 0
         assertEquals(expected, weekendDiscount)
+    }
+
+    @Test
+    fun `무료 메뉴에 샴페인이 포함된다면 에러가 발생 한다`() {
+        assert(benefits.freeMenus.find { menu -> menu.name == "샴페인" } == null)
     }
 
 }

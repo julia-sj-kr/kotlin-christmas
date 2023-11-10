@@ -9,9 +9,9 @@ enum class Main(val menu: String, val type: String, val price: Int) {
 }
 
 enum class Appetizer(val menu: String, val type: String, val price: Int) {
-    ButtonMushroomSoup("티본스테이크", "에피타이저", 6_000),
+    ButtonMushroomSoup("양송이 스프", "에피타이저", 6_000),
     Tapas("타파스", "에피타이저", 5_500),
-    CaesarSalad("해산물파스타", "에피타이저", 8_000),
+    CaesarSalad("시저샐러드", "에피타이저", 8_000),
 }
 
 enum class Dessert(val menu: String, val type: String, val price: Int) {
@@ -22,5 +22,5 @@ enum class Dessert(val menu: String, val type: String, val price: Int) {
 enum class Beverage(val menu: String, val type: String, val price: Int) {
     ZeroCola("제로콜라", "음료", 3_000),
     RedWine("레드와인", "음료", 60_000),
-    Champagne("해산물파스타", "음료", 25_000),
+    Champagne("샴페인", "음료", 25_000),
 }
