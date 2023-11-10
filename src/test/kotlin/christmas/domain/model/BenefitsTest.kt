@@ -53,6 +53,13 @@ class BenefitsTest {
     }
 
     @Test
+    fun `총 할인 가격이 5046원이 아닐 경우에 에러가 발생 한다`() {
+        val expected = 5046
+        val totalDiscount = benefits.totalDiscountPrice()
+        assertEquals(expected,totalDiscount)
+    }
+
+    @Test
     fun `무료 메뉴에 샴페인이 포함된다면 에러가 발생 한다`() {
         assert(benefits.freeMenus.find { menu -> menu.name == "샴페인" } == null)
     }

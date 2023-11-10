@@ -15,6 +15,9 @@ class Benefits(val date: Date, val order: Order) {
         addChampagneFree()
     }
 
+    fun totalDiscountPrice() = discounts.sumOf { discount -> discount.price }
+
+
     private fun addDDayDiscountPrice() {
         if (date.day > 25) discounts.add(Discount("크리스마스 디 데이 할인", 1000 + (date.day - 1) * 100))
     }
