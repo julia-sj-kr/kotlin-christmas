@@ -1,5 +1,6 @@
 package christmas.view
 
+import christmas.domain.model.Benefits
 import christmas.domain.model.Menu
 import christmas.domain.model.Order
 
@@ -20,6 +21,13 @@ class OutputView {
         println("<할인 전 총주문 금액>")
         val totalPrice = order.getTotalPrice()
         println(formatCurrency(totalPrice))
+    }
+
+    fun showFreeMenus(benefits: Benefits){
+        println("<증정 메뉴>")
+        benefits.freeMenus.forEach { freeMenu ->
+            println("${freeMenu.name} ${freeMenu.count}개")
+        }
     }
 
     private fun formatCurrency(price: Int) = String.format("%,.0f원", price)
