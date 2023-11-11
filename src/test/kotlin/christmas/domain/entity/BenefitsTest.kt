@@ -1,27 +1,27 @@
 package christmas.domain.entity
 
-import christmas.enum.Menus
-import christmas.presentation.model.Date
-import christmas.presentation.model.Menu
+import christmas.enum.MenuRole
+import christmas.presentation.model.DateModel
+import christmas.presentation.model.MenuModel
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
 class BenefitsTest {
-    lateinit var benefits: Benefits
+    lateinit var benefits: BenefitsEntity
 
     @BeforeEach
     fun `setUp`() {
-        val tBoneStake = Menus.TBoneSteak
-        val iceCream = Menus.IceCream
-        val date = Date(3, isWeekend = false, hasStar = true)
-        val order = Order(
+        val tBoneStake = MenuRole.TBoneSteak
+        val iceCream = MenuRole.IceCream
+        val date = DateModel(3, isWeekend = false, hasStar = true)
+        val order = OrderEntity(
             listOf(
-                Menu(name = tBoneStake.menu, tBoneStake.type, tBoneStake.price, 1),
-                Menu(name = iceCream.menu, iceCream.type, iceCream.price, 2)
+                MenuModel(name = tBoneStake.menu, tBoneStake.type, tBoneStake.price, 1),
+                MenuModel(name = iceCream.menu, iceCream.type, iceCream.price, 2)
             )
         )
-        benefits = Benefits(date, order)
+        benefits = BenefitsEntity(date, order)
     }
 
     @Test

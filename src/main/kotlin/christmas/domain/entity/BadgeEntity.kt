@@ -1,6 +1,6 @@
 package christmas.domain.entity
 
-class Badge(private val benefitsPrice: Int) {
+class BadgeEntity(private val benefitsPrice: Int) {
     private val type = when {
         benefitsPrice >= 20_000 -> "산타"
         benefitsPrice >= 10_000 -> "트리"

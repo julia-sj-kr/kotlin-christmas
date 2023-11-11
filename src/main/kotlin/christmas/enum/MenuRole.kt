@@ -1,7 +1,7 @@
 package christmas.enum
 
 
-enum class Menus(val menu: String, val type: String, val price: Int) {
+enum class MenuRole(val menu: String, val type: String, val price: Int) {
     TBoneSteak("티본스테이크", "메인", 55_000),
     BarbecueRibs("바비큐립", "메인", 54_000),
     SeafoodPasta("해산물파스타", "메인", 25_000),

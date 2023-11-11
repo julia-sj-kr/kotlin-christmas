@@ -1,23 +1,23 @@
 package christmas.domain.entity
 
-import christmas.enum.Menus
-import christmas.presentation.model.Menu
+import christmas.enum.MenuRole
+import christmas.presentation.model.MenuModel
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
 class OrderTest {
 
-    lateinit var order: Order
+    lateinit var order: OrderEntity
 
     @BeforeEach
     fun `setUp`() {
-        val tBoneStake = Menus.TBoneSteak
-        val barbecueRibs = Menus.BarbecueRibs
-        order = Order(
+        val tBoneStake = MenuRole.TBoneSteak
+        val barbecueRibs = MenuRole.BarbecueRibs
+        order = OrderEntity(
             listOf(
-                Menu(name = tBoneStake.menu, tBoneStake.type, tBoneStake.price, 2),
-                Menu(name = barbecueRibs.menu, barbecueRibs.type, barbecueRibs.price, 1)
+                MenuModel(name = tBoneStake.menu, tBoneStake.type, tBoneStake.price, 2),
+                MenuModel(name = barbecueRibs.menu, barbecueRibs.type, barbecueRibs.price, 1)
             )
         )
     }

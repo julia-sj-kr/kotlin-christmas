@@ -5,11 +5,11 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
 class BadgeTest {
-    lateinit var badge: Badge
+    lateinit var badge: BadgeEntity
 
     @BeforeEach
     fun `setUp`(){
-        badge = Badge(6000)
+        badge = BadgeEntity(6000)
     }
 
     @Test

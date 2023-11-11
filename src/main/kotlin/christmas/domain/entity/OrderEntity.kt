@@ -1,8 +1,8 @@
 package christmas.domain.entity
 
-import christmas.presentation.model.Menu
+import christmas.presentation.model.MenuModel
 
-class Order(private val menus: List<Menu>) {
+class OrderEntity(private val menus: List<MenuModel>) {
 
     fun getMenus() = menus
     fun getTotalPrice() = menus.sumOf { menu -> menu.count * menu.price }
