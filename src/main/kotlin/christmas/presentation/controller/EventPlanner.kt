@@ -1,5 +1,7 @@
 package christmas.presentation.controller
 
+import christmas.domain.entity.BadgeEntity
+import christmas.domain.entity.BenefitsEntity
 import christmas.domain.entity.EventCalendarEntity
 import christmas.domain.entity.OrderEntity
 import christmas.enum.MenuRole
@@ -14,6 +16,8 @@ class EventPlanner {
     private val outputView = OutputView()
     lateinit var order: OrderEntity
     lateinit var date: DateModel
+    lateinit var benefits: BenefitsEntity
+    lateinit var badge: BadgeEntity
 
     fun introduce() {
         outputView.introduce()
@@ -27,8 +31,17 @@ class EventPlanner {
         }
         this.date = date
         this.order = OrderEntity(readMenus)
+        this.benefits = BenefitsEntity(date, order)
+        this.badge = BadgeEntity(benefits.totalDiscountPrice())
     }
 
-
-
+    fun showBenefitsEvent() {
+        outputView.showOrderMenus(order.getMenus())
+        outputView.showTotalPrice(order)
+        outputView.showFreeMenus(benefits = benefits)
+        outputView.showDiscounts(benefits)
+        outputView.showTotalDiscount(benefits)
+        outputView.showPayment(order, benefits)
+        outputView.showEventBadge(badge)
+    }
 }
