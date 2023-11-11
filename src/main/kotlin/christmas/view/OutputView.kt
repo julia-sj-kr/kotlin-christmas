@@ -23,13 +23,20 @@ class OutputView {
         println(formatCurrency(totalPrice))
     }
 
-    fun showFreeMenus(benefits: Benefits){
+    fun showFreeMenus(benefits: Benefits) {
         println("<증정 메뉴>")
         benefits.freeMenus.forEach { freeMenu ->
             println("${freeMenu.name} ${freeMenu.count}개")
         }
     }
 
-    private fun formatCurrency(price: Int) = String.format("%,.0f원", price)
+    fun showDiscounts(benefits: Benefits) {
+        println("<혜택 내역>")
+        benefits.discounts.forEach { discount ->
+            println("${discount.name}: ${formatCurrency(-discount.price)}")
+        }
+    }
+
+    private fun formatCurrency(price: Int) = String.format("%,.0f원", price.toDouble())
 
 }
