@@ -1,6 +1,6 @@
 package christmas.domain.entity
 
-import christmas.enum.Main
+import christmas.enum.Menus
 import christmas.presentation.model.Menu
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
@@ -12,8 +12,8 @@ class OrderTest {
 
     @BeforeEach
     fun `setUp`() {
-        val tBoneStake = Main.TBoneSteak
-        val barbecueRibs = Main.BarbecueRibs
+        val tBoneStake = Menus.TBoneSteak
+        val barbecueRibs = Menus.BarbecueRibs
         order = Order(
             listOf(
                 Menu(name = tBoneStake.menu, tBoneStake.type, tBoneStake.price, 2),

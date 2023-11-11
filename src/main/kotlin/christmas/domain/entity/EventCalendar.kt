@@ -14,5 +14,5 @@ class EventCalendar {
 
     private fun isWeekend(day: Int) = day % 7 == 1 || day % 7 == 2
 
-    private fun hasStar(day: Int) = day % 7 == 3
+    private fun hasStar(day: Int) = day % 7 == 3 || day == 25
 }

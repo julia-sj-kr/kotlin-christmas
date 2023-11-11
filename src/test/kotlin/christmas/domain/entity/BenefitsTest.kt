@@ -1,7 +1,6 @@
 package christmas.domain.entity
 
-import christmas.enum.Dessert
-import christmas.enum.Main
+import christmas.enum.Menus
 import christmas.presentation.model.Date
 import christmas.presentation.model.Menu
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -13,8 +12,8 @@ class BenefitsTest {
 
     @BeforeEach
     fun `setUp`() {
-        val tBoneStake = Main.TBoneSteak
-        val iceCream = Dessert.IceCream
+        val tBoneStake = Menus.TBoneSteak
+        val iceCream = Menus.IceCream
         val date = Date(3, isWeekend = false, hasStar = true)
         val order = Order(
             listOf(

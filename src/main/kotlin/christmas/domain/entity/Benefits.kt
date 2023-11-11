@@ -1,6 +1,6 @@
 package christmas.domain.entity
 
-import christmas.enum.Beverage
+import christmas.enum.Menus
 import christmas.presentation.model.Date
 import christmas.presentation.model.Discount
 import christmas.presentation.model.Menu
@@ -44,7 +44,7 @@ class Benefits(val date: Date, val order: Order) {
 
     private fun addChampagneFree() {
         if (order.getTotalPrice() < 120_000) return
-        val champagne = Beverage.Champagne
+        val champagne = Menus.Champagne
         freeMenus.add(Menu(champagne.menu, champagne.type, champagne.price, 1))
     }
 
