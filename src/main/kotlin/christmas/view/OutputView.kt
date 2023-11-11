@@ -1,5 +1,6 @@
 package christmas.view
 
+import christmas.domain.model.Badge
 import christmas.domain.model.Benefits
 import christmas.domain.model.Menu
 import christmas.domain.model.Order
@@ -47,6 +48,11 @@ class OutputView {
         println("<할인 후 예상 결제 금액>")
         val payment = order.getTotalPrice() - benefits.totalDiscountPrice()
         println(formatCurrency(payment))
+    }
+
+    fun showEventBadge(badge: Badge){
+        println("<12월 이벤트 배지>")
+        println(badge.getType())
     }
 
     private fun formatCurrency(price: Int) = String.format("%,.0f원", price.toDouble())
