@@ -1,6 +1,9 @@
-package christmas.domain.model
+package christmas.domain.entity
 
 import christmas.enum.Beverage
+import christmas.presentation.model.Date
+import christmas.presentation.model.Discount
+import christmas.presentation.model.Menu
 
 class Benefits(val date: Date, val order: Order) {
 

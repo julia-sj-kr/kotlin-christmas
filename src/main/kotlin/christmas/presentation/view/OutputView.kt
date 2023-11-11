@@ -1,9 +1,9 @@
-package christmas.view
+package christmas.presentation.view
 
-import christmas.domain.model.Badge
-import christmas.domain.model.Benefits
-import christmas.domain.model.Menu
-import christmas.domain.model.Order
+import christmas.domain.entity.Badge
+import christmas.domain.entity.Benefits
+import christmas.presentation.model.Menu
+import christmas.domain.entity.Order
 
 class OutputView {
 

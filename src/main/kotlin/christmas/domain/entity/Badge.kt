@@ -1,4 +1,4 @@
-package christmas.domain.model
+package christmas.domain.entity
 
 class Badge(private val benefitsPrice: Int) {
     private val type = when {

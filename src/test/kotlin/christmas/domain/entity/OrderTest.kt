@@ -1,6 +1,7 @@
-package christmas.domain.model
+package christmas.domain.entity
 
 import christmas.enum.Main
+import christmas.presentation.model.Menu
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test

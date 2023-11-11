@@ -1,4 +1,4 @@
-package christmas.domain.model
+package christmas.domain.entity
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach

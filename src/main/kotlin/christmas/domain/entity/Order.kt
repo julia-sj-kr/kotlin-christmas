@@ -1,4 +1,6 @@
-package christmas.domain.model
+package christmas.domain.entity
+
+import christmas.presentation.model.Menu
 
 class Order(private val menus: List<Menu>) {
 

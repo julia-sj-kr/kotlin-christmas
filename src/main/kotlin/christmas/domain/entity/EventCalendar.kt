@@ -1,4 +1,6 @@
-package christmas.domain.model
+package christmas.domain.entity
+
+import christmas.presentation.model.Date
 
 class EventCalendar {
     val dates = List(30) { index ->
