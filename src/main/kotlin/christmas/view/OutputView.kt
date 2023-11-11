@@ -43,6 +43,12 @@ class OutputView {
         println(formatCurrency(-totalDiscount))
     }
 
+    fun showPayment(order: Order,benefits: Benefits){
+        println("<할인 후 예상 결제 금액>")
+        val payment = order.getTotalPrice() - benefits.totalDiscountPrice()
+        println(formatCurrency(payment))
+    }
+
     private fun formatCurrency(price: Int) = String.format("%,.0f원", price.toDouble())
 
 }
