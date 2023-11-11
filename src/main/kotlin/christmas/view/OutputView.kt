@@ -37,6 +37,12 @@ class OutputView {
         }
     }
 
+    fun showTotalDiscount(benefits: Benefits) {
+        println("<총혜택 금액>")
+        val totalDiscount = benefits.totalDiscountPrice()
+        println(formatCurrency(-totalDiscount))
+    }
+
     private fun formatCurrency(price: Int) = String.format("%,.0f원", price.toDouble())
 
 }
