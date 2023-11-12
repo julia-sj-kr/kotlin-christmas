@@ -12,8 +12,8 @@ class OrderTest {
 
     @BeforeEach
     fun `setUp`() {
-        val tBoneStake = MenuRole.TBoneSteak
-        val barbecueRibs = MenuRole.BarbecueRibs
+        val tBoneStake = MenuRole.T_BONE_STEAK
+        val barbecueRibs = MenuRole.BARBECUE_RIBS
         order = OrderEntity(
             listOf(
                 MenuModel(name = tBoneStake.menu, tBoneStake.type, tBoneStake.price, 2),

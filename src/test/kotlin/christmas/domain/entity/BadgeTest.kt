@@ -8,12 +8,12 @@ class BadgeTest {
     lateinit var badge: BadgeEntity
 
     @BeforeEach
-    fun `setUp`(){
+    fun `setUp`() {
         badge = BadgeEntity(6000)
     }
 
     @Test
-    fun `뱃지가 별이 아니라면 오류가 발생 한다`(){
-        assertEquals(badge.getType() ,"별")
+    fun `뱃지가 별이 아니라면 오류가 발생 한다`() {
+        assertEquals(badge.getType(), "별")
     }
 }

@@ -47,7 +47,7 @@ class BenefitsEntity(private val date: DateModel, private val order: OrderEntity
 
     private fun addChampagneFree() {
         if (order.getTotalPrice() < 120_000) return
-        val champagne = MenuRole.Champagne
+        val champagne = MenuRole.CHAMPAGNE
         freeMenus.add(MenuModel(champagne.menu, champagne.type, champagne.price, 1))
         discounts.add(DiscountModel("증정 이벤트", champagne.price))
     }

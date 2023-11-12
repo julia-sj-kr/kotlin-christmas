@@ -27,14 +27,15 @@ class EventPlanner {
 
     }
 
-    fun introduce() {
+    private fun introduce() {
         outputView.introduce()
     }
 
-    fun order() {
+    private fun order() {
         val date = eventCalendar.dates[inputView.readDate() - 1]
         val readMenus = inputView.readMenus().map { (name, count) ->
-            val menu = requireNotNull(MenuRole.values().find { menu -> menu.menu == name }) { println(Error.NO_MENU.message) }
+            val menu =
+                requireNotNull(MenuRole.values().find { menu -> menu.menu == name }) { println(Error.NO_MENU.message) }
             MenuModel(menu.menu, menu.type, menu.price, count)
         }
         this.date = date
@@ -43,7 +44,7 @@ class EventPlanner {
         this.badge = BadgeEntity(benefits.totalDiscountPrice())
     }
 
-    fun showBenefitsEvent() {
+    private fun showBenefitsEvent() {
         outputView.showOrderMenus(order.getMenus())
         outputView.showTotalPrice(order)
         outputView.showFreeMenus(benefits)
