@@ -26,6 +26,10 @@ class OutputView {
 
     fun showFreeMenus(benefits: BenefitsEntity) {
         println("<증정 메뉴>")
+        if (benefits.freeMenus.isEmpty()) {
+            println("없음")
+            return
+        }
         benefits.freeMenus.forEach { freeMenu ->
             println("${freeMenu.name} ${freeMenu.count}개")
         }
@@ -33,6 +37,10 @@ class OutputView {
 
     fun showDiscounts(benefits: BenefitsEntity) {
         println("<혜택 내역>")
+        if (benefits.discounts.isEmpty()) {
+            println("없음")
+            return
+        }
         benefits.discounts.forEach { discount ->
             println("${discount.name}: ${formatCurrency(-discount.price)}")
         }

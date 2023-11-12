@@ -29,12 +29,14 @@ class BenefitsEntity(private val date: DateModel, private val order: OrderEntity
     private fun addWeekdayDiscount() {
         if (date.isWeekend) return
         val dessertMenus = order.getMenus().filter { menu -> menu.type == "디저트" }
+        if (dessertMenus.isEmpty()) return
         discounts.add(DiscountModel("평일 할인", dessertMenus.sumOf { dessert -> dessert.count * 2023 }))
     }
 
     private fun addWeekendDiscount() {
         if (date.isWeekend.not()) return
         val mainMenus = order.getMenus().filter { menu -> menu.type == "메인" }
+        if (mainMenus.isEmpty()) return
         discounts.add(DiscountModel("주말 할인", mainMenus.sumOf { main -> main.count * 2023 }))
     }
 
