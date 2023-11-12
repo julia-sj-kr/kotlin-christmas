@@ -40,17 +40,17 @@ class OutputView {
 
     fun showTotalDiscount(benefits: BenefitsEntity) {
         println("<총혜택 금액>")
-        val totalDiscount = benefits.totalDiscountPrice()
-        println(formatCurrency(-totalDiscount))
+        val totalBenefitsPrice = benefits.totalBenefitsPrice()
+        println(formatCurrency(-totalBenefitsPrice))
     }
 
-    fun showPayment(order: OrderEntity, benefits: BenefitsEntity){
+    fun showPayment(order: OrderEntity, benefits: BenefitsEntity) {
         println("<할인 후 예상 결제 금액>")
         val payment = order.getTotalPrice() - benefits.totalDiscountPrice()
         println(formatCurrency(payment))
     }
 
-    fun showEventBadge(badge: BadgeEntity){
+    fun showEventBadge(badge: BadgeEntity) {
         println("<12월 이벤트 배지>")
         println(badge.getType())
     }

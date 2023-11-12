@@ -5,7 +5,7 @@ import christmas.presentation.model.DateModel
 import christmas.presentation.model.DiscountModel
 import christmas.presentation.model.MenuModel
 
-class BenefitsEntity(val date: DateModel, val order: OrderEntity) {
+class BenefitsEntity(private val date: DateModel, private val order: OrderEntity) {
 
     val discounts = mutableListOf<DiscountModel>()
     val freeMenus = mutableListOf<MenuModel>()
@@ -18,11 +18,12 @@ class BenefitsEntity(val date: DateModel, val order: OrderEntity) {
         addChampagneFree()
     }
 
-    fun totalDiscountPrice() = discounts.sumOf { discount -> discount.price }
+    fun totalDiscountPrice() = discounts.sumOf { discount -> if (discount.name == "증정 이벤트") 0 else discount.price }
 
+    fun totalBenefitsPrice() = discounts.sumOf { discount -> discount.price }
 
     private fun addDDayDiscountPrice() {
-        if (date.day > 25) discounts.add(DiscountModel("크리스마스 디 데이 할인", 1000 + (date.day - 1) * 100))
+        if (date.day < 25) discounts.add(DiscountModel("크리스마스 디 데이 할인", 1000 + (date.day - 1) * 100))
     }
 
     private fun addWeekdayDiscount() {
@@ -46,6 +47,7 @@ class BenefitsEntity(val date: DateModel, val order: OrderEntity) {
         if (order.getTotalPrice() < 120_000) return
         val champagne = MenuRole.Champagne
         freeMenus.add(MenuModel(champagne.menu, champagne.type, champagne.price, 1))
+        discounts.add(DiscountModel("증정 이벤트", champagne.price))
     }
 
 
