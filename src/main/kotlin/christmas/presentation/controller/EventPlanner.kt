@@ -19,6 +19,13 @@ class EventPlanner {
     lateinit var benefits: BenefitsEntity
     lateinit var badge: BadgeEntity
 
+    fun play(){
+        introduce()
+        order()
+        showBenefitsEvent()
+
+    }
+
     fun introduce() {
         outputView.introduce()
     }

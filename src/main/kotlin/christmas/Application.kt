@@ -1,6 +1,8 @@
 package christmas
 
+import christmas.presentation.controller.EventPlanner
+
 fun main() {
-    TODO("프로그램 구현")
+    EventPlanner().play()
 
 }
