@@ -33,6 +33,8 @@ class EventPlanner {
 
     private fun order() {
         val date = eventCalendar.dates[inputView.readDate() - 1]
+        outputView.showCaution()
+        outputView.showMenus()
         val readMenus = inputView.readMenus().map { (name, count) ->
             val menu =
                 requireNotNull(MenuRole.values().find { menu -> menu.menu == name }) { println(Error.NO_MENU.message) }

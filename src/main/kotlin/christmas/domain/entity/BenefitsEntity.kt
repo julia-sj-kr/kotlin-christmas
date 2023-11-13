@@ -12,11 +12,13 @@ class BenefitsEntity(private val date: DateModel, private val order: OrderEntity
     val freeMenus = mutableListOf<MenuModel>()
 
     init {
-        addDDayDiscountPrice()
-        addWeekdayDiscount()
-        addWeekendDiscount()
-        addSpecialDiscount()
-        addChampagneFree()
+        if (order.getTotalPrice() >= MIN_ORDER_PRICE){
+            addDDayDiscountPrice()
+            addWeekdayDiscount()
+            addWeekendDiscount()
+            addSpecialDiscount()
+            addChampagneFree()
+        }
     }
 
     fun totalDiscountPrice() =
@@ -25,7 +27,7 @@ class BenefitsEntity(private val date: DateModel, private val order: OrderEntity
     fun totalBenefitsPrice() = discounts.sumOf { discount -> discount.price }
 
     private fun addDDayDiscountPrice() {
-        if (date.day <= 25) {
+        if (date.day <= CHRISTMAS_DATE) {
             discounts.add(
                 DiscountModel(
                     DiscountRole.CHRISTMAS_D_DAY.type,
@@ -79,5 +81,7 @@ class BenefitsEntity(private val date: DateModel, private val order: OrderEntity
         const val D_DAY_DISCOUNT = 100
         const val DAY_MINUS = 1
         const val NOT_ADD_PRICE = 0
+        const val CHRISTMAS_DATE = 25
+        const val MIN_ORDER_PRICE = 10000
     }
 }

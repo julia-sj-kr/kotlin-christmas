@@ -56,12 +56,21 @@ class BenefitsTest {
     fun `총 할인 가격이 5046원이 아닐 경우에 오류가 발생 한다`() {
         val expected = 5046
         val totalDiscount = benefits.totalDiscountPrice()
-        assertEquals(expected,totalDiscount)
+        assertEquals(expected, totalDiscount)
     }
 
     @Test
     fun `무료 메뉴에 샴페인이 포함된다면 오류가 발생 한다`() {
         assert(benefits.freeMenus.find { menu -> menu.name == "샴페인" } == null)
+    }
+
+    @Test
+    fun `메뉴가 만원이 넘지 않을 경우에 할인 내역이 생기면 오류가 발생 한다`() {
+        val tapas = MenuRole.TAPAS
+        val order = OrderEntity(listOf(MenuModel(name = tapas.menu, tapas.type, tapas.price, 1)))
+        val date = EventCalendarEntity().dates[4]
+        benefits = BenefitsEntity(date, order)
+        assert(benefits.discounts.isEmpty())
     }
 
 }

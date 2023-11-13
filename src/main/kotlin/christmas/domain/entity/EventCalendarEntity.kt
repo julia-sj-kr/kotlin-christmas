@@ -14,7 +14,7 @@ class EventCalendarEntity {
 
     private fun hasStar(day: Int) = day % ONE_WEEK == START_SUNDAY || day == CHRISTMAS_DATE
 
-    companion object{
+    private companion object{
         const val ONE_WEEK = 7
         const val START_FRIDAY = 1
         const val START_SATURDAY = 2
