@@ -7,9 +7,13 @@ class BadgeEntity(private val benefitsPrice: Int) {
         benefitsPrice >= BadgeRole.SANTA.minBenefitsPrice -> BadgeRole.SANTA.badge
         benefitsPrice >= BadgeRole.TREE.minBenefitsPrice -> BadgeRole.TREE.badge
         benefitsPrice >= BadgeRole.STAR.minBenefitsPrice -> BadgeRole.STAR.badge
-        else -> "없음"
+        else -> NOTHING
     }
 
     fun getType() = type
+
+    companion object{
+        const val NOTHING = "없음"
+    }
 
 }

@@ -1,5 +1,6 @@
 package christmas.domain.entity
 
+import christmas.enum.DiscountRole
 import christmas.enum.MenuRole
 import christmas.presentation.model.DateModel
 import christmas.presentation.model.DiscountModel
@@ -18,39 +19,65 @@ class BenefitsEntity(private val date: DateModel, private val order: OrderEntity
         addChampagneFree()
     }
 
-    fun totalDiscountPrice() = discounts.sumOf { discount -> if (discount.name == "증정 이벤트") 0 else discount.price }
+    fun totalDiscountPrice() =
+        discounts.sumOf { discount -> if (discount.name == FREE_EVENT) NOT_ADD_PRICE else discount.price }
 
     fun totalBenefitsPrice() = discounts.sumOf { discount -> discount.price }
 
     private fun addDDayDiscountPrice() {
-        if (date.day < 25) discounts.add(DiscountModel("크리스마스 디 데이 할인", 1000 + (date.day - 1) * 100))
+        if (date.day <= 25) {
+            discounts.add(
+                DiscountModel(
+                    DiscountRole.CHRISTMAS_D_DAY.type,
+                    DiscountRole.CHRISTMAS_D_DAY.price + (date.day - DAY_MINUS) * D_DAY_DISCOUNT
+                )
+            )
+        }
     }
 
     private fun addWeekdayDiscount() {
         if (date.isWeekend) return
-        val dessertMenus = order.getMenus().filter { menu -> menu.type == "디저트" }
+        val dessertMenus = order.getMenus().filter { menu -> menu.type == WEEKDAY_MENU_TYPE }
         if (dessertMenus.isEmpty()) return
-        discounts.add(DiscountModel("평일 할인", dessertMenus.sumOf { dessert -> dessert.count * 2023 }))
+        discounts.add(
+            DiscountModel(
+                DiscountRole.WEEKDAY.type,
+                dessertMenus.sumOf { dessert -> dessert.count * DiscountRole.WEEKDAY.price })
+        )
     }
 
     private fun addWeekendDiscount() {
         if (date.isWeekend.not()) return
-        val mainMenus = order.getMenus().filter { menu -> menu.type == "메인" }
+        val mainMenus = order.getMenus().filter { menu -> menu.type == WEEKEND_MENU_TYPE }
         if (mainMenus.isEmpty()) return
-        discounts.add(DiscountModel("주말 할인", mainMenus.sumOf { main -> main.count * 2023 }))
+        discounts.add(
+            DiscountModel(
+                DiscountRole.WEEKEND.type,
+                mainMenus.sumOf { main -> main.count * DiscountRole.WEEKEND.price })
+        )
     }
 
     private fun addSpecialDiscount() {
         if (date.hasStar.not()) return
-        discounts.add(DiscountModel("특별 할인", 1000))
+        discounts.add(DiscountModel(DiscountRole.SPECIAL.type, DiscountRole.SPECIAL.price))
     }
 
     private fun addChampagneFree() {
-        if (order.getTotalPrice() < 120_000) return
+        if (order.getTotalPrice() < FREE_EVENT_MIN_PRICE) return
         val champagne = MenuRole.CHAMPAGNE
-        freeMenus.add(MenuModel(champagne.menu, champagne.type, champagne.price, 1))
-        discounts.add(DiscountModel("증정 이벤트", champagne.price))
+        freeMenus.add(MenuModel(champagne.menu, champagne.type, champagne.price, FREE_CHAMPAGNE_COUNT))
+        discounts.add(DiscountModel(FREE_EVENT, champagne.price))
     }
 
 
+    companion object {
+        const val FREE_EVENT = "증정 이벤트"
+        const val FREE_EVENT_MIN_PRICE = 120_000
+        const val FREE_CHAMPAGNE_COUNT = 1
+        const val WEEKDAY_MENU_TYPE = "디저트"
+        const val WEEKEND_MENU_TYPE = "메인"
+        const val D_DAY_DISCOUNT = 100
+        const val DAY_MINUS = 1
+        const val NOT_ADD_PRICE = 0
+    }
 }
