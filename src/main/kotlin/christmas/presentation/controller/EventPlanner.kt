@@ -15,15 +15,19 @@ class EventPlanner {
     private val eventCalendar = EventCalendarEntity()
     private val inputView = InputView()
     private val outputView = OutputView()
-    lateinit var order: OrderEntity
-    lateinit var date: DateModel
-    lateinit var benefits: BenefitsEntity
-    lateinit var badge: BadgeEntity
+    private lateinit var order: OrderEntity
+    private lateinit var date: DateModel
+    private lateinit var benefits: BenefitsEntity
+    private lateinit var badge: BadgeEntity
 
     fun play() {
         introduce()
-        order()
+        setDate()
+        guide()
+        takeOrder()
+        showOrder()
         showBenefitsEvent()
+        showStatistics()
 
     }
 
@@ -31,28 +35,41 @@ class EventPlanner {
         outputView.introduce()
     }
 
-    private fun order() {
+    private fun setDate(){
         val date = eventCalendar.dates[inputView.readDate() - 1]
+        this.date = date
+    }
+
+    private fun guide(){
         outputView.showCaution()
         outputView.showMenus()
+    }
+
+    private fun takeOrder() {
         val readMenus = inputView.readMenus().map { (name, count) ->
             val menu =
                 requireNotNull(MenuRole.values().find { menu -> menu.menu == name }) { println(Error.NO_MENU.message) }
             MenuModel(menu.menu, menu.type, menu.price, count)
         }
-        this.date = date
         this.order = OrderEntity(readMenus)
         this.benefits = BenefitsEntity(date, order)
         this.badge = BadgeEntity(benefits.totalDiscountPrice())
     }
 
-    private fun showBenefitsEvent() {
+    private fun showOrder(){
         outputView.showOrderMenus(order.getMenus())
         outputView.showTotalPrice(order)
+    }
+
+    private fun showBenefitsEvent() {
         outputView.showFreeMenus(benefits)
         outputView.showDiscounts(benefits)
+    }
+
+    private fun showStatistics(){
         outputView.showTotalDiscount(benefits)
         outputView.showPayment(order, benefits)
         outputView.showEventBadge(badge)
     }
+
 }

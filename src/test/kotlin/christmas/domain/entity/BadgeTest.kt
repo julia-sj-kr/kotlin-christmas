@@ -5,7 +5,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
 class BadgeTest {
-    lateinit var badge: BadgeEntity
+    private lateinit var badge: BadgeEntity
 
     @BeforeEach
     fun `setUp`() {

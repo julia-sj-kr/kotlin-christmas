@@ -12,7 +12,7 @@ import java.lang.IllegalArgumentException
 
 class OrderTest {
 
-    lateinit var order: OrderEntity
+    private lateinit var order: OrderEntity
 
     @BeforeEach
     fun `setUp`() {

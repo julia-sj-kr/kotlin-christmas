@@ -8,7 +8,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
 class BenefitsTest {
-    lateinit var benefits: BenefitsEntity
+    private lateinit var benefits: BenefitsEntity
 
     @BeforeEach
     fun `setUp`() {

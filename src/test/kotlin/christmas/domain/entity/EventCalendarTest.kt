@@ -7,7 +7,7 @@ import org.junit.jupiter.params.provider.ValueSource
 
 class EventCalendarTest {
 
-    lateinit var eventCalendarEntity: EventCalendarEntity
+    private lateinit var eventCalendarEntity: EventCalendarEntity
 
     @BeforeEach
     fun `setUp`() {
