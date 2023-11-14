@@ -72,7 +72,7 @@ class BenefitsEntity(private val date: DateModel, private val order: OrderEntity
     }
 
 
-    companion object {
+    private companion object {
         const val FREE_EVENT = "증정 이벤트"
         const val FREE_EVENT_MIN_PRICE = 120_000
         const val FREE_CHAMPAGNE_COUNT = 1

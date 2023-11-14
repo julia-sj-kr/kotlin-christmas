@@ -15,7 +15,7 @@ class OrderEntity(private val menus: List<MenuModel>) {
     fun getMenus() = menus
     fun getTotalPrice() = menus.sumOf { menu -> menu.count * menu.price }
 
-    companion object {
+    private companion object {
         const val BEVERAGE = "음료"
         const val MAX_MENU_COUNT = 20
     }

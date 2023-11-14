@@ -28,19 +28,18 @@ class EventPlanner {
         showOrder()
         showBenefitsEvent()
         showStatistics()
-
     }
 
     private fun introduce() {
         outputView.introduce()
     }
 
-    private fun setDate(){
-        val date = eventCalendar.dates[inputView.readDate() - 1]
+    private fun setDate() {
+        val date = eventCalendar.dates[inputView.readDate() - DATE_TO_INDEX_NUMBER]
         this.date = date
     }
 
-    private fun guide(){
+    private fun guide() {
         outputView.showCaution()
         outputView.showMenus()
     }
@@ -56,7 +55,7 @@ class EventPlanner {
         this.badge = BadgeEntity(benefits.totalDiscountPrice())
     }
 
-    private fun showOrder(){
+    private fun showOrder() {
         outputView.showOrderMenus(order.getMenus())
         outputView.showTotalPrice(order)
     }
@@ -66,10 +65,14 @@ class EventPlanner {
         outputView.showDiscounts(benefits)
     }
 
-    private fun showStatistics(){
+    private fun showStatistics() {
         outputView.showTotalDiscount(benefits)
         outputView.showPayment(order, benefits)
         outputView.showEventBadge(badge)
+    }
+
+    private companion object {
+        const val DATE_TO_INDEX_NUMBER = 1
     }
 
 }

@@ -12,7 +12,7 @@ class BadgeEntity(private val benefitsPrice: Int) {
 
     fun getType() = type
 
-    companion object{
+    private companion object{
         const val NOTHING = "없음"
     }
 
