@@ -23,6 +23,12 @@ class OutputView {
         println(Menu.CHAMPAGNE.menu + " ${Menu.CHAMPAGNE.price}개")
     }
 
+    fun printEventResult(christmasDiscounts: List<ChristmasDiscount>) {
+        christmasDiscounts.forEach { christmasDiscount ->
+            println("${christmasDiscount.name}: -${christmasDiscount.discountPrice}")
+        }
+    }
+
     private fun Int.toWonFormat(): String {
         val formatter = DecimalFormat("#,###원")
         return formatter.format(this)
