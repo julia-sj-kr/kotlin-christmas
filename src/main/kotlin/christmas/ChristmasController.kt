@@ -13,6 +13,7 @@ class ChristmasController {
         outputView.printTotalOrderPrice(totalOrderPrice)
         val christmasEvent = ChristmasEvent(visitDay, orderMenus, totalOrderPrice)
         outputView.printApply(christmasEvent.hasApplyMenu())
+        outputView.printEventResult(christmasEvent.getDiscounts())
     }
 
     private fun getTotalOrderPrice(orderMenus: List<OrderMenu>): Int {
