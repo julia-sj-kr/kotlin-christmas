@@ -9,4 +9,18 @@ class InputView {
         require(visitDay in 1..31) { "[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요." }
         return visitDay
     }
+
+    fun readOrderMenus(): List<OrderMenu> {
+        val menusInput = Console.readLine().split(",")
+        val menus = menusInput.map { menuInput ->
+            val menu = menuInput.split("-")
+            require(menu.size == 2) { "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요." }
+            val (name, countInput) = menu
+            val count = requireNotNull(countInput.toIntOrNull()) { "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요." }
+            require(count >= 1) { "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요." }
+            OrderMenu(name, count)
+        }
+        require(menus.distinctBy { it.name }.size == menus.size) { "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요." }
+        return menus
+    }
 }
