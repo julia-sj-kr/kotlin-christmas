@@ -12,5 +12,11 @@ enum class Menu(val menu: String, val price: Int) {
     ICE_CREAM("아이스크림", 5_000),
     ZERO_COLA("제로콜라", 3_000),
     RED_WINE("레드와인", 60_000),
-    CHAMPAGNE("샴페인", 25_000)
+    CHAMPAGNE("샴페인", 25_000);
+
+    companion object {
+        fun convertMenu(name: String): Menu {
+            return requireNotNull(Menu.entries.find { it.menu == name }) { "[ERROR] 없는 메뉴를 주문하셨습니다." }
+        }
+    }
 }

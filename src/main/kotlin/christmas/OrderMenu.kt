@@ -1,3 +1,3 @@
 package christmas
 
-data class OrderMenu(val name: String, val count: Int)
+data class OrderMenu(val menu: Menu, val count: Int)
