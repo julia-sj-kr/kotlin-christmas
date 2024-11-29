@@ -53,4 +53,6 @@ class ChristmasEvent(private val day: Int, private val orderMenus: List<OrderMen
     fun getDiscounts() = discounts.toList()
 
     fun hasApplyMenu() = discounts.find { it.name == Discount.APPLY.title } != null
+
+    fun totalEventPrice() = discounts.sumOf { it.discountPrice }
 }
