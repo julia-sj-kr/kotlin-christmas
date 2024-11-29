@@ -34,6 +34,11 @@ class OutputView {
         println("-${totalDiscountPrice.toWonFormat()}")
     }
 
+    fun printPaymentAmount(paymentAmount: Int) {
+        println("<할인 후 예상 결제 금액>")
+        println(paymentAmount.toWonFormat())
+    }
+
     private fun Int.toWonFormat(): String {
         val formatter = DecimalFormat("#,###원")
         return formatter.format(this)
