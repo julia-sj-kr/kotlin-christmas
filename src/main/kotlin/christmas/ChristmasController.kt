@@ -15,6 +15,7 @@ class ChristmasController {
         outputView.printApply(christmasEvent.hasApplyMenu())
         outputView.printEventResult(christmasEvent.getDiscounts())
         outputView.printTotalEventPrice(christmasEvent.totalEventPrice())
+        outputView.printPaymentAmount(totalOrderPrice - christmasEvent.totalEventPrice())
     }
 
     private fun getTotalOrderPrice(orderMenus: List<OrderMenu>): Int {
