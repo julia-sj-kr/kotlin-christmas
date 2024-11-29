@@ -1,7 +1,5 @@
 package christmas
 
-import christmas.Menu
-
 enum class MenuType(val menus: List<Menu>) {
     APPETIZER(listOf(Menu.BUTTON_MUSHROOM_SOUP, Menu.TAPAS, Menu.CAESAR_SALAD)),
     MAIN(listOf(Menu.T_BONE_STEAK, Menu.BARBECUE_RIBS, Menu.SEAFOOD_PASTA, Menu.CHRISTMAS_PASTA)),

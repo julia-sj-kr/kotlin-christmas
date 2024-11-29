@@ -18,9 +18,14 @@ class InputView {
             val (name, countInput) = menu
             val count = requireNotNull(countInput.toIntOrNull()) { "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요." }
             require(count >= 1) { "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요." }
+
             OrderMenu(name, count)
         }
         require(menus.distinctBy { it.name }.size == menus.size) { "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요." }
         return menus
+    }
+
+    fun getMenuType(name: String) {
+        MenuType.values().map { it.menus.contains(name) }
     }
 }
