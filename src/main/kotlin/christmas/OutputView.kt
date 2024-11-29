@@ -39,6 +39,11 @@ class OutputView {
         println(paymentAmount.toWonFormat())
     }
 
+    fun printEventBadge(badge: String) {
+        println("<12월 이벤트 배지>")
+        println(badge)
+    }
+
     private fun Int.toWonFormat(): String {
         val formatter = DecimalFormat("#,###원")
         return formatter.format(this)
