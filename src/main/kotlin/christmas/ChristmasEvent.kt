@@ -15,9 +15,10 @@ class ChristmasEvent(private val day: Int, private val orderMenus: List<OrderMen
 
     init {
         discounts.add(christmasDDAYDiscount())
-        discounts.add(weekDayDiscount())
-        discounts.add(holidayDiscount())
+        if (Calendar.isWeekDay(day)) discounts.add(weekDayDiscount())
+        else discounts.add(holidayDiscount())
         discounts.add(applyChampagneDiscount())
+        discounts.add(specialDiscount())
         discounts.removeAll { it.discountPrice == 0 }
     }
 
@@ -37,6 +38,11 @@ class ChristmasEvent(private val day: Int, private val orderMenus: List<OrderMen
         val mainCount = orderMenus.count { orderMenu -> MenuType.convertMenuType(orderMenu.menu) == MenuType.MAIN }
         val holidayDiscount = mainCount * Discount.HOLIDAY.price
         return ChristmasDiscount(Discount.WEEK_DAY.name, holidayDiscount)
+    }
+
+    private fun specialDiscount(): ChristmasDiscount {
+        if (Calendar.isSpecialDay(day)) return ChristmasDiscount(Discount.SPECIAL.title, Discount.SPECIAL.price)
+        return ChristmasDiscount(Discount.SPECIAL.title, 0)
     }
 
     private fun applyChampagneDiscount(): ChristmasDiscount {
