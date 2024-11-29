@@ -12,8 +12,7 @@ class OutputView {
         }
     }
 
-    fun printTotalOrderPrice(orderMenus: List<OrderMenu>) {
-        val totalOrderPrice = orderMenus.sumOf { it.menu.price * it.count }
+    fun printTotalOrderPrice(totalOrderPrice: Int) {
         println("<할인 전 총주문 금액>")
         println(totalOrderPrice.toWonFormat())
     }
