@@ -25,8 +25,13 @@ class OutputView {
 
     fun printEventResult(christmasDiscounts: List<ChristmasDiscount>) {
         christmasDiscounts.forEach { christmasDiscount ->
-            println("${christmasDiscount.name}: -${christmasDiscount.discountPrice}")
+            println("${christmasDiscount.name}: -${christmasDiscount.discountPrice.toWonFormat()}")
         }
+    }
+
+    fun printTotalEventPrice(totalDiscountPrice: Int) {
+        println("<총혜택 금액>")
+        println("-${totalDiscountPrice.toWonFormat()}")
     }
 
     private fun Int.toWonFormat(): String {
