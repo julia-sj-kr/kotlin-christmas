@@ -18,12 +18,13 @@ class OutputView {
     }
 
     fun printApply(hasApplyMenu: Boolean) {
-        if (hasApplyMenu.not()) return
         println("<증정 메뉴>")
+        if (hasApplyMenu.not()) return
         println(Menu.CHAMPAGNE.menu + " ${Menu.CHAMPAGNE.price}개")
     }
 
     fun printEventResult(christmasDiscounts: List<ChristmasDiscount>) {
+        println("<혜택 내역>")
         christmasDiscounts.forEach { christmasDiscount ->
             println("${christmasDiscount.name}: -${christmasDiscount.discountPrice.toWonFormat()}")
         }
@@ -41,6 +42,7 @@ class OutputView {
 
     fun printEventBadge(badge: String) {
         println("<12월 이벤트 배지>")
+        if (badge.isBlank()) return
         println(badge)
     }
 
