@@ -11,6 +11,7 @@ class InputView {
     }
 
     fun readOrderMenus(): List<OrderMenu> {
+        println("주문하실 메뉴를 메뉴와 개수를 알려 주세요. (e.g. 해산물파스타-2,레드와인-1,초코케이크-1)")
         val menusInput = Console.readLine().split(",")
         val menus = menusInput.map { menuInput ->
             val menu = menuInput.split("-")
@@ -18,14 +19,9 @@ class InputView {
             val (name, countInput) = menu
             val count = requireNotNull(countInput.toIntOrNull()) { "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요." }
             require(count >= 1) { "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요." }
-
-            OrderMenu(name, count)
+            OrderMenu(Menu.convertMenu(name), count)
         }
-        require(menus.distinctBy { it.name }.size == menus.size) { "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요." }
+        require(menus.distinctBy { it.menu }.size == menus.size) { "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요." }
         return menus
-    }
-
-    fun getMenuType(name: String) {
-        MenuType.values().map { it.menus.contains(name) }
     }
 }
