@@ -1,5 +1,5 @@
 package christmas
 
 fun main() {
-    //todo
+    Controller().run()
 }
