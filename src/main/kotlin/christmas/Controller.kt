@@ -7,8 +7,9 @@ class Controller {
 
     fun run() {
         outputView.startMessage()
-        val visitDate = visitDate()
-        println(visitDate)
+        val visitDateInput = visitDate()
+        val orderMenuInput = orderMenu()
+        println(orderMenuInput)
     }
 
     fun visitDate(): Int {
@@ -22,15 +23,21 @@ class Controller {
 
     fun orderMenu(): List<Order> {
         val orderMenus = mutableListOf<Order>()
-        //고객이 메뉴판에 없는 메뉴를 입력하는 경우
-        //메뉴의 개수는 1 이상일때만 유효
-        //메뉴 형식이 다를때
-        //중복 메뉴일 경우
-
-        do {
-
-        } while (false)
-        val inputOrderMenus = inputView.readMenu().split("-")
+//        //고객이 메뉴판에 없는 메뉴를 입력하는 경우
+//        //메뉴의 개수는 1 이상일때만 유효
+//        //메뉴 형식이 다를때
+//        //중복 메뉴일 경우
+//
+//        do {
+//
+//        } while (false)
+        val inputOrderMenus = inputView.readMenu().split(",")
+        inputOrderMenus.forEach { order ->
+            val input = order.split("-")
+            val name = input[0]
+            val num = input[1].toInt()
+            orderMenus.add(Order(name,num))
+        }
         return orderMenus
     }
 }
