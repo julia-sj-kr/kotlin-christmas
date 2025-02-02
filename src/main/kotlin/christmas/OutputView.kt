@@ -61,5 +61,8 @@ class OutputView {
 
         println("<할인 후 예상 결제 금액>")
         println(String.format("%,d원",discount.getTotalPrice(orderList)-totalBenefitAmount+getChampagne))
+
+        println("<12월 이벤트 배지>")
+        println(Badge.getBadge(totalBenefitAmount).type)
     }
 }

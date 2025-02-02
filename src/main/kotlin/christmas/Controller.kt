@@ -12,8 +12,7 @@ class Controller {
         outputView.printOrderMenu(orderMenuInput)//샴페인 증정품 유무 검증 이전 주문내역
         outputView.printTotalOriginPrice(orderMenuInput)
         outputView.printGiftMessage(orderMenuInput)
-        outputView.showFinalPaymentDetails(visitDateInput,orderMenuInput)
-
+        outputView.showFinalPaymentDetails(visitDateInput, orderMenuInput)
     }
 
     fun visitDate(): Int {
@@ -40,7 +39,7 @@ class Controller {
             val input = order.split("-")
             val name = input[0]
             val num = input[1].toInt()
-            orderMenus.add(Order(name,num))
+            orderMenus.add(Order(name, num))
         }
         return orderMenus
     }
