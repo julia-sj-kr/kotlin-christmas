@@ -1,6 +1,5 @@
 package christmas
 
-
 class Controller {
     private val outputView = OutputView()
     private val inputView = InputView()
@@ -9,6 +8,7 @@ class Controller {
         outputView.startMessage()
         val visitDateInput = visitDate()
         val orderMenuInput = orderMenu()
+        outputView.readVisitDate(visitDateInput)
         println(orderMenuInput)
     }
 
