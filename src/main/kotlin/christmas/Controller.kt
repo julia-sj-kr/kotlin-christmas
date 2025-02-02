@@ -8,9 +8,12 @@ class Controller {
         outputView.startMessage()
         val visitDateInput = visitDate()
         val orderMenuInput = orderMenu()
-        outputView.readVisitDate(visitDateInput)
-        outputView.readOrderMenu(orderMenuInput)
-        outputView.totalOriginPrice(orderMenuInput)
+        outputView.printVisitDate(visitDateInput)
+        outputView.printOrderMenu(orderMenuInput)//샴페인 증정품 유무 검증 이전 주문내역
+        outputView.printTotalOriginPrice(orderMenuInput)
+        outputView.printGiftMessage(orderMenuInput)
+        outputView.showFinalPaymentDetails(visitDateInput,orderMenuInput)
+
     }
 
     fun visitDate(): Int {

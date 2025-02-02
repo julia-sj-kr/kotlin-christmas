@@ -27,14 +27,14 @@ class Discount {
         else 0
     }
 
-    fun weekDayDiscount(date: Int, orderList: List<Order>): Int {
+    fun weekDayDiscount(date: Int, orderList: MutableList<Order>): Int {
         var dessertDiscount: Int = 0
         ////true이면 주말, false이면 평일
         if (!Calendar().sortWeekend(date)) {
             orderList.forEach { order ->
-                //val category = MenuBoard.category
+                val category = MenuBoard.category
                 if (category["디저트"]?.contains(order.name) == true) {
-                    dessertDiscount += 2023
+                    dessertDiscount += 2023 * order.num
                 }
             }
         }
@@ -42,12 +42,10 @@ class Discount {
     }
 
     //함수형 스타일
-    fun weekendDiscount(date: Int, orderList: List<Order>): Int {
+    fun weekendDiscount(date: Int, orderList: MutableList<Order>): Int {
         var mainDiscount: Int = 0
         if (Calendar().sortWeekend(date)) {
-            mainDiscount = orderList
-                .filter { order -> category["main"]?.contains(order.name) == true }
-                .size * 2023
+            mainDiscount = orderList.filter { order -> category["메인"]?.contains(order.name) == true }.sumOf { it.num*2023 }
         }
         return mainDiscount
     }
@@ -58,8 +56,8 @@ class Discount {
     }
 
     fun getTotalPrice(orderList: MutableList<Order>): Int {
-        return orderList.sumOf { order->
-            MenuBoard.menuItems[order.name]?:0
+        return orderList.sumOf { order ->
+            MenuBoard.menuItems[order.name]!! * order.num
         }
     }
 
@@ -68,9 +66,9 @@ class Discount {
 
         if (totalPrice > 120000) {
             orderList.add(Order("샴페인", 1))
-            return MenuBoard.menuItems["샴페인"]!!}
-            else return 0
-        }
+            return MenuBoard.menuItems["샴페인"]!!
+        } else return 0
     }
+}
 
 
