@@ -2,6 +2,7 @@ package christmas
 
 import christmas.MenuBoard.category
 import christmas.MenuBoard.menuItems
+import java.awt.Menu
 
 class Discount {
 //    크리스마스 디데이 할인
@@ -56,15 +57,20 @@ class Discount {
         else 0
     }
 
-    fun getChampagne(orderList: MutableList<Order>): Int {
-        var totalPrice = 0
-        orderList.forEach { order ->
-            val price = menuItems[order.name]!!.toInt()
-            totalPrice += price * order.num
+    fun getTotalPrice(orderList: MutableList<Order>): Int {
+        return orderList.sumOf { order->
+            MenuBoard.menuItems[order.name]?:0
         }
-
-        if(totalPrice>120000) orderList.add(Order("샴페인",1))
-        return totalPrice
     }
-}
+
+    fun getChampagne(orderList: MutableList<Order>): Int {
+        var totalPrice = getTotalPrice(orderList)
+
+        if (totalPrice > 120000) {
+            orderList.add(Order("샴페인", 1))
+            return MenuBoard.menuItems["샴페인"]!!}
+            else return 0
+        }
+    }
+
 

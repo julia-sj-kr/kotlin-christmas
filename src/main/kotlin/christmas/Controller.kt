@@ -9,7 +9,8 @@ class Controller {
         val visitDateInput = visitDate()
         val orderMenuInput = orderMenu()
         outputView.readVisitDate(visitDateInput)
-        println(orderMenuInput)
+        outputView.readOrderMenu(orderMenuInput)
+        outputView.totalOriginPrice(orderMenuInput)
     }
 
     fun visitDate(): Int {
@@ -21,7 +22,7 @@ class Controller {
         return visitDate
     }
 
-    fun orderMenu(): List<Order> {
+    fun orderMenu(): MutableList<Order> {
         val orderMenus = mutableListOf<Order>()
 //        //고객이 메뉴판에 없는 메뉴를 입력하는 경우
 //        //메뉴의 개수는 1 이상일때만 유효
