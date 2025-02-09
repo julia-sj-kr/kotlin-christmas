@@ -57,16 +57,16 @@ class Discount {
 
     fun getTotalPrice(orderList: MutableList<Order>): Int {
         return orderList.sumOf { order ->
-            MenuBoard.menuItems[order.name]!! * order.num
+            menuItems[order.name]!! * order.num
         }
     }
 
     fun getChampagne(orderList: MutableList<Order>): Int {
-        var totalPrice = getTotalPrice(orderList)
+        val totalPrice = getTotalPrice(orderList)
 
         if (totalPrice > 120000) {
             orderList.add(Order("샴페인", 1))
-            return MenuBoard.menuItems["샴페인"]!!
+            return menuItems["샴페인"]!!
         } else return 0
     }
 }

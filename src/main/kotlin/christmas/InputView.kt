@@ -1,23 +1,17 @@
 package christmas
 
+import camp.nextstep.edu.missionutils.Console
+
 class InputView {
-    fun readDate(): Int {
+    fun readDate(): String {
         println("12월 중 식당 예상 방문 날짜는 언제인가요? (숫자만 입력해 주세요!)")
-        //scanner, BufferedReader
-        //val input = Console.readLine()
-        while (true){
-            try {
-                val input = readln()
-                return input.toInt()
-            }catch (e:NumberFormatException){
-                println("잘못된 입력입니다. 숫자를 입력해 주세요.")
-            }
-        }
+        val input = Console.readLine()
+        return input
     }
 
-    fun readMenu(): String{
+    fun readMenu(): String {
         println("주문하실 메뉴를 메뉴와 개수를 알려 주세요. (e.g. 해산물파스타-2,레드와인-1,초코케이크-1)")
-        val orderMenu = readln()
+        val orderMenu = Console.readLine()
         return orderMenu
     }
 }

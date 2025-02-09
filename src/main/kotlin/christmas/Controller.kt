@@ -6,22 +6,26 @@ class Controller {
 
     fun run() {
         outputView.startMessage()
-        val visitDateInput = visitDate()
+        val visitDate = getVisitDate()
         val orderMenuInput = orderMenu()
-        outputView.printVisitDate(visitDateInput)
+        outputView.printVisitDate(visitDate)
         outputView.printOrderMenu(orderMenuInput)//샴페인 증정품 유무 검증 이전 주문내역
         outputView.printTotalOriginPrice(orderMenuInput)
         outputView.printGiftMessage(orderMenuInput)
-        outputView.showFinalPaymentDetails(visitDateInput, orderMenuInput)
+        outputView.showFinalPaymentDetails(visitDate, orderMenuInput)
     }
 
-    fun visitDate(): Int {
-        var visitDate: Int
-        do {
-            visitDate = inputView.readDate()
-            if (visitDate !in 1..31) println("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.")
-        } while (visitDate !in 1..31)
-        return visitDate
+    private fun getVisitDate(): Int {
+        while (true) {
+            try {
+                val visitDate = inputView.readDate()
+                val date = requireNotNull(visitDate.toIntOrNull()) { "[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요." }
+                require(date in 1..31) { "[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요." }
+                return date
+            } catch (e: IllegalArgumentException) {
+                println(e.message)
+            }
+        }
     }
 
     fun orderMenu(): MutableList<Order> {

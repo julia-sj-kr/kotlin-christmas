@@ -11,8 +11,7 @@ class Calendar {
         return day % 7 == 0 || day % 7 == 1 //true이면 주말, false이면 평일
     }
 
-    fun checkSpecialDays(day:Int):Boolean{
-        val specialDays = listOf(3,10,17,24,25,31)
-        return specialDays.contains(day)
+    fun checkSpecialDays(day: Int): Boolean {
+        return day % 7 == 2 || day == 25
     }
 }
