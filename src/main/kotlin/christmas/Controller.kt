@@ -1,5 +1,7 @@
 package christmas
 
+import christmas.MenuBoard.category
+
 class Controller {
     private val outputView = OutputView()
     private val inputView = InputView()
@@ -43,6 +45,9 @@ class Controller {
                 }
                 require(orderMenus.map { it.name }.size == orderMenus.map { it.name }
                     .distinct().size) { "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요." }
+                require(orderMenus.sumOf { it.num } <= 20) { "[ERROR] 메뉴는 한 번에 최대 20개까지만 주문할 수 있습니다." }
+                require(orderMenus.filterNot { category["음료"]!!.contains(it.name) }
+                    .isNotEmpty()) { "[ERROR] 음료만 주문 시, 주문할 수 없습니다." }
                 return orderMenus
             } catch (e: IllegalArgumentException) {
                 println(e.message)
