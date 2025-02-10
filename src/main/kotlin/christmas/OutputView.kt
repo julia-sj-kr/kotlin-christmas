@@ -37,6 +37,21 @@ class OutputView {
 //            증정 이벤트: -25,000원
 //        - 적용된 이벤트가 하나도 없다면 혜택 내역 "없음"으로 보여 주세요.
 //        - 혜택 내역에 여러 개의 이벤트가 적용된 경우, 출력 순서는 자유롭게 출력해주세요. =>set 구조(순서가 있는 구조는 list)
+
+        val totalPrice = discount.getTotalPrice(orderList)
+
+        if (totalPrice<10_000){
+            println("<혜택 내역>")
+            println("없음")
+            println("<총혜택 금액>")
+            println("0원")
+            println("<할인 후 예상 결제 금액>")
+            println(String.format("%,d원", totalPrice))
+            println("<12월 이벤트 배지>")
+            println("없음")
+            return  // 할인 적용 없이 종료
+        }
+
         val christmasDiscount = discount.christmasDiscount(date)
         val weekendDiscount = discount.weekendDiscount(date, orderList)
         val weekDayDiscount = discount.weekDayDiscount(date, orderList)
@@ -60,7 +75,7 @@ class OutputView {
         println(String.format("%,d원",totalBenefitAmount*-1))
 
         println("<할인 후 예상 결제 금액>")
-        println(String.format("%,d원",discount.getTotalPrice(orderList)-totalBenefitAmount+getChampagne))
+        println(String.format("%,d원",totalPrice-totalBenefitAmount+getChampagne))
 
         println("<12월 이벤트 배지>")
         println(Badge.getBadge(totalBenefitAmount).type)
