@@ -7,7 +7,7 @@ class Controller {
     fun run() {
         outputView.startMessage()
         val visitDate = getVisitDate()
-        val orderMenuInput = orderMenu()
+        val orderMenuInput = getOrderMenu()
         outputView.printVisitDate(visitDate)
         outputView.printOrderMenu(orderMenuInput)//샴페인 증정품 유무 검증 이전 주문내역
         outputView.printTotalOriginPrice(orderMenuInput)
@@ -28,23 +28,25 @@ class Controller {
         }
     }
 
-    fun orderMenu(): MutableList<Order> {
-        val orderMenus = mutableListOf<Order>()
-//        //고객이 메뉴판에 없는 메뉴를 입력하는 경우
-//        //메뉴의 개수는 1 이상일때만 유효
-//        //메뉴 형식이 다를때
-//        //중복 메뉴일 경우
-//
-//        do {
-//
-//        } while (false)
-        val inputOrderMenus = inputView.readMenu().split(",")
-        inputOrderMenus.forEach { order ->
-            val input = order.split("-")
-            val name = input[0]
-            val num = input[1].toInt()
-            orderMenus.add(Order(name, num))
+    private fun getOrderMenu(): MutableList<Order> {
+        while (true) {
+            val orderMenus = mutableListOf<Order>()
+            val inputOrderMenus = inputView.readMenu().split(",")
+            try {
+                inputOrderMenus.forEach { order ->
+                    val input = order.split("-")
+                    val name = input[0]
+                    require(MenuBoard.menuItems.contains(name)) { "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요." }
+                    val num = requireNotNull(input[1].toIntOrNull()) { "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요." }
+                    require(num >= 1) { "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요." }
+                    orderMenus.add(Order(name, num))
+                }
+                require(orderMenus.map { it.name }.size == orderMenus.map { it.name }
+                    .distinct().size) { "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요." }
+                return orderMenus
+            } catch (e: IllegalArgumentException) {
+                println(e.message)
+            }
         }
-        return orderMenus
     }
 }
